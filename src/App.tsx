@@ -21,6 +21,7 @@ function App() {
         {items &&
           items.map((e) => (
             <Card
+              key={e.id}
               product={e}
               handelClickOpen={() => void 0}
               handelClickAddToCard={() => void 0}

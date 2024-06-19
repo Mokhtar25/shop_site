@@ -4,10 +4,13 @@ export default function Header() {
   const [current, setCurrent] = useState("home");
 
   const handelClick = (type: "home" | "about" | "shop") => {
+    console.log(current);
     setCurrent(type);
   };
 
-  const activeStyle = "drop-shadow-[0_1.2px_1.2px_rgba(168,85,247,.8)]";
+  // fix this
+  const activeStyle =
+    "drop-shadow-[0_1.2px_1.2px_rgba(168,85,247,.8)] text-slate-600";
   const stylelink =
     "cursor-pointer select-none drop-shadow-md hover:text-slate-600 hover:shadow-black active:text-slate-900 ";
   return (
