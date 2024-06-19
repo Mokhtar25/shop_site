@@ -3,7 +3,7 @@ import { Product } from "../types";
 
 interface Props {
   product: Product;
-  fav: boolean;
+  fav?: boolean;
   handelClickOpen: () => void;
   handelClickAddToCard: () => void;
 }
@@ -17,16 +17,15 @@ const Card = ({
   const [isfav, setFav] = useState(fav);
 
   return (
-    <div className="flex h-52 w-36 flex-col border-2 border-white">
-      <h1> {product.title} </h1>
+    <div className="group flex h-72 w-52 cursor-pointer flex-col items-center rounded border-2 border-white p-4">
       <img
         src={product.images[0]}
         alt={"Picture of " + product.title}
-        className="size-28"
+        className="size-40 drop-shadow-lg transition-all duration-500 group-hover:z-50 group-hover:mb-10 group-hover:scale-[250%] group-hover:pb-10"
       ></img>
 
-      <p>{product.description}</p>
-      <span>{product.price}</span>
+      <h1 className="text-center"> {product.title} </h1>
+      <span className="overflow-hidden">{product.price}€</span>
     </div>
   );
 };
