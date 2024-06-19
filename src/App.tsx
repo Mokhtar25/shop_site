@@ -1,33 +1,31 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [items, setItems] = useState<any>();
+
+  // useEffect(() => {
+  //   fetch("https://dummyjson.com/products/?limit=200")
+  //     .then((res) => res.json())
+  //     .then((json) => setItems(json.products));
+  // }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div>Hello, world</div>
+      <img
+        src="https://www.chanel.com/us/img/constant-products/eau-de-parfum-spray-1.7oz-fno-5/p64296/zoom-1.jpg"
+        alt=""
+      ></img>
+
+      {items &&
+        items.map((e: any) => (
+          <>
+            <img src={e.images[0]} alt={e.title} key={e.id}></img>
+            <h1>{e.title}</h1>
+            <h2>{e.description}</h2>
+          </>
+        ))}
     </>
   );
 }
