@@ -12,18 +12,18 @@ export default function Header() {
     "cursor-pointer select-none drop-shadow-md hover:text-slate-600 hover:shadow-black active:text-slate-900 ";
   return (
     <nav className="flex h-16 bg-slate-100">
-      <ul className="flex w-full items-center justify-center gap-8 text-xl text-slate-800">
-        <li
-          className={stylelink + (current === "home" ? " " + activeStyle : "")}
-          onClick={() => handelClick("home")}
-        >
-          Home
-        </li>
+      <ul className="flex w-full flex-row-reverse items-center justify-center gap-8 text-xl text-slate-800">
         <li
           className={stylelink + (current === "about" ? " " + activeStyle : "")}
           onClick={() => handelClick("about")}
         >
           About
+        </li>
+        <li
+          className={stylelink + (current === "home" ? " " + activeStyle : "")}
+          onClick={() => handelClick("home")}
+        >
+          Home
         </li>
         <li
           className={stylelink + (current === "shop" ? " " + activeStyle : "")}

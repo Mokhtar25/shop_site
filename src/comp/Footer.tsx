@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="absolute bottom-0 flex w-full justify-between border-b-0 border-t-2 border-slate-200 bg-neutral-800 px-28 py-4 font-light text-slate-300">
+    <footer className="flex w-full justify-between border-b-0 border-t-2 border-slate-200 bg-neutral-800 px-28 py-4 font-light text-slate-300">
       <ul className="cursor-pointer">
         <li>About</li>
         <li>Print</li>

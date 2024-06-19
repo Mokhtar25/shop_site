@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Product, Review } from "./types";
+import { Product } from "./types";
 import Header from "./comp/Header";
 import Footer from "./comp/Footer";
 
 function App() {
   const [items, setItems] = useState<Product[]>();
 
-  // useEffect(() => {
-  //   fetch("https://dummyjson.com/products/?limit=5")
-  //     .then((res) => res.json())
-  //     .then((json) => setItems(json.products));
-  // }, []);
+  useEffect(() => {
+    fetch("https://dummyjson.com/products/?limit=5")
+      .then((res) => res.json())
+      .then((json) => setItems(json.products));
+  }, []);
 
   return (
     <>
       <Header />
-      <div>Hello, world</div>
 
       <img
         src="https://www.chanel.com/us/img/constant-products/eau-de-parfum-spray-1.7oz-fno-5/p64296/zoom-1.jpg"
