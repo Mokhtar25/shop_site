@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Product, Review } from "./types";
 import Header from "./comp/Header";
+import Footer from "./comp/Footer";
 
 function App() {
   const [items, setItems] = useState<Product[]>();
@@ -38,6 +39,7 @@ function App() {
             </div>
           </>
         ))}
+      <Footer />
     </>
   );
 }
