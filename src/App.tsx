@@ -9,7 +9,7 @@ function App() {
   const [items, setItems] = useState<Product[]>();
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/?limit=1")
+    fetch("https://dummyjson.com/products/?limit=5")
       .then((res) => res.json())
       .then((json) => setItems(json.products));
   }, []);
