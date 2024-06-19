@@ -4,6 +4,7 @@ import { Product } from "./types";
 import Header from "./comp/Header";
 import Footer from "./comp/Footer";
 import Card from "./comp/Card";
+import ShopPage from "./comp/ShopPage";
 
 function App() {
   const [items, setItems] = useState<Product[]>();
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="flex h-full min-h-96 flex-wrap gap-24 p-8">
+      <ShopPage>
         {items &&
           items.map((e) => (
             <Card
@@ -27,7 +28,7 @@ function App() {
               handelClickAddToCard={() => void 0}
             />
           ))}
-      </div>
+      </ShopPage>
 
       <Footer />
     </>
