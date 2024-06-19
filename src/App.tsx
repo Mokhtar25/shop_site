@@ -17,15 +17,16 @@ function App() {
     <>
       <Header />
 
-      <img
-        src="https://www.chanel.com/us/img/constant-products/eau-de-parfum-spray-1.7oz-fno-5/p64296/zoom-1.jpg"
-        alt=""
-      ></img>
-
       {items &&
         items.map((e) => (
           <>
-            <img src={e.images[0]} alt={e.title} key={e.id}></img>
+            <img
+              src={e.images[0]}
+              alt={e.title}
+              key={e.id}
+              height={300}
+              width={200}
+            ></img>
             <h1>{e.title}</h1>
             <h2>{e.description}</h2>
             <div>
