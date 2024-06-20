@@ -82,7 +82,7 @@ export default function ShopPage() {
           ))}
         </ul>
       </aside>
-      <main className="flex flex-wrap gap-24 p-12 pl-20">
+      <main className="flex min-h-screen w-[100%] flex-wrap gap-24 p-12 pl-20">
         {items && items.length > 0 ? (
           items.map((e: any) => (
             <Card
