@@ -45,7 +45,9 @@ export default function ShopPage({ children }: PropsPage) {
   return (
     <div className="flex h-fit border-2 border-pink-50">
       <aside className="flex w-1/3 flex-col gap-8 bg-white text-black">
-        <h2 className="p-4">side bar</h2>
+        <h2 className="mt-2 p-2 px-4 text-3xl font-[199.8] tracking-wide">
+          Store Name
+        </h2>
         <ul className="flex flex-col gap-3 p-4">
           <h2 className="text-xl text-slate-600 before:block before:h-[2px] before:w-10/12 before:bg-slate-400">
             catgories
