@@ -32,7 +32,7 @@ export default function ShopPage() {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
   const [currentCat, setCurrentCat] = useState("all");
   const allItems = useContext(products);
-  const [items, setItems] = useState<any>();
+  const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " ";
   console.log("itemss,", items);
 
@@ -83,7 +83,7 @@ export default function ShopPage() {
         </ul>
       </aside>
       <main className="flex flex-wrap gap-24 p-12 pl-20">
-        {items &&
+        {items && items.length > 0 ? (
           items.map((e: any) => (
             <Card
               key={e.id}
@@ -91,8 +91,17 @@ export default function ShopPage() {
               handelClickOpen={() => void 0}
               handelClickAddToCard={() => void 0}
             />
-          ))}
-        <LoadingCard />
+          ))
+        ) : (
+          <>
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </>
+        )}
       </main>
     </div>
   );
