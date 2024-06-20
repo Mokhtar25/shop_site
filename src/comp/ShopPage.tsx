@@ -1,6 +1,8 @@
-import { ChangeEvent, MouseEventHandler, useRef, useState } from "react";
+import { ChangeEvent, useContext, useRef, useState } from "react";
 
+import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
+import { products } from "../context";
 
 interface PropsPage {
   children: React.ReactNode;
@@ -27,8 +29,9 @@ const setCat = () => {
   return items;
 };
 
-export default function ShopPage({ children }: PropsPage) {
+export default function ShopPage() {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
+  const items = useContext(products);
   const checkBoxStyle = " ";
 
   const handelChange = (
@@ -64,7 +67,17 @@ export default function ShopPage({ children }: PropsPage) {
           ))}
         </ul>
       </aside>
-      <main className="flex flex-wrap gap-24 p-12 pl-20">{children}</main>
+      <main className="flex flex-wrap gap-24 p-12 pl-20">
+        {items &&
+          items.map((e) => (
+            <Card
+              key={e.id}
+              product={e}
+              handelClickOpen={() => void 0}
+              handelClickAddToCard={() => void 0}
+            />
+          ))}
+      </main>
     </div>
   );
 }

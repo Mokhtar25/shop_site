@@ -15,7 +15,7 @@ const router = createBrowserRouter([
       {
         path: "/shop",
 
-        element: <Footer />,
+        element: <ShopPage />,
       },
     ],
   },
