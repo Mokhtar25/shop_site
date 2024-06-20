@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { products } from "../context";
 import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
+import { LoadingCard } from "./Loadingcard";
 
 const catgories = ["beauty", "fragrances", "skin-care", "sunglasses"];
 
@@ -91,6 +92,7 @@ export default function ShopPage() {
               handelClickAddToCard={() => void 0}
             />
           ))}
+        <LoadingCard />
       </main>
     </div>
   );

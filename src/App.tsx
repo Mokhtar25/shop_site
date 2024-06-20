@@ -3,8 +3,6 @@ import "./App.css";
 import { Product } from "./types";
 import Header from "./comp/Header";
 import Footer from "./comp/Footer";
-import Card from "./comp/Card";
-import ShopPage from "./comp/ShopPage";
 import { Outlet } from "react-router-dom";
 import { ContextItems, itemsContext } from "./context";
 import { products as productsProvider } from "./context";
