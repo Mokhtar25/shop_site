@@ -6,8 +6,9 @@ import Footer from "./comp/Footer";
 import { Outlet } from "react-router-dom";
 import { ContextItems, itemsContext } from "./context";
 import { products as productsProvider } from "./context";
+import ErrorPage from "./comp/ErrorPage";
 
-function App() {
+function App({ Error = false }) {
   const [likedProudcts, setLikedProducts] = useState<Product[]>([]);
   const [items, setItems] = useState<Product[]>([]);
   const [cardItems, setCardItems] = useState<Product[]>([]);
@@ -40,6 +41,19 @@ function App() {
       setCardItems: setCardItems,
     },
   };
+
+  if (Error)
+    return (
+      <>
+        <itemsContext.Provider value={context}>
+          <Header />
+        </itemsContext.Provider>
+
+        <ErrorPage />
+
+        <Footer />
+      </>
+    );
 
   return (
     <>
