@@ -1,14 +1,12 @@
-import { ChangeEvent, useContext, useRef, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 import { products } from "../context";
+import { Product } from "../types";
+import { getItemsByCat } from "../utils/utils";
 
-interface PropsPage {
-  children: React.ReactNode;
-}
-
-const catgories = ["Make up", "duften", "clothes", "all"];
+const catgories = ["beauty", "fragrances", "skin-care", "sunglasses"];
 
 interface Catgories {
   id: string;
@@ -31,8 +29,22 @@ const setCat = () => {
 
 export default function ShopPage() {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
-  const items = useContext(products);
+  const [currentCat, setCurrentCat] = useState("all");
+  const allItems = useContext(products);
+  const [items, setItems] = useState<any>();
   const checkBoxStyle = " ";
+  console.log("itemss,", items);
+
+  const fetchItems = (e: string) => {
+    console.log(e);
+    if (e === "all") {
+      setItems(allItems);
+    } else {
+      getItemsByCat(e).then((e) => setItems(e));
+    }
+  };
+
+  useEffect(() => fetchItems(currentCat), [currentCat, allItems]);
 
   const handelChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -43,6 +55,8 @@ export default function ShopPage() {
         ele.id === elementId ? { ...ele, selected: e.target.checked } : ele,
       ),
     );
+    const index = selection.findIndex((e) => e.id === elementId);
+    setCurrentCat(selection[index].name);
   };
 
   return (
@@ -69,7 +83,7 @@ export default function ShopPage() {
       </aside>
       <main className="flex flex-wrap gap-24 p-12 pl-20">
         {items &&
-          items.map((e) => (
+          items.map((e: any) => (
             <Card
               key={e.id}
               product={e}

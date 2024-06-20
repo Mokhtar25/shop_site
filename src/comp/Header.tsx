@@ -4,7 +4,7 @@ import { itemsContext } from "../context";
 
 export default function Header() {
   const [current, setCurrent] = useState("home");
-  const test = useContext(itemsContext);
+  const items = useContext(itemsContext);
 
   const handelClick = (type: "home" | "about" | "shop") => {
     setCurrent(type);
