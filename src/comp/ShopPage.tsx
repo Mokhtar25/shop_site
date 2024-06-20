@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useRef, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -29,21 +29,24 @@ const setCat = () => {
 
 export default function ShopPage({ children }: PropsPage) {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
+  const checkBoxStyle = " ";
+
   const handelChange = (
     e: ChangeEvent<HTMLInputElement>,
     elementId: string,
   ) => {
-      const newArray = [...selection]
-      const index = newArray.findIndex((id) id === elementId)
-    return 0;
+    setSelection(
+      selection.map((ele) =>
+        ele.id === elementId ? { ...ele, selected: e.target.checked } : ele,
+      ),
+    );
   };
-  const checked = false;
-  const checkBoxStyle = " ";
+
   return (
     <div className="flex h-fit border-2 border-pink-50">
       <aside className="flex w-1/3 flex-col gap-8 bg-white text-black">
         <h2 className="p-4">side bar</h2>
-        <ul className="flex flex-col gap-2 p-4">
+        <ul className="flex flex-col gap-3 p-4">
           <h2 className="text-xl text-slate-600 before:block before:h-[2px] before:w-10/12 before:bg-slate-400">
             catgories
           </h2>
@@ -79,10 +82,25 @@ const CheckBox = ({
   checked,
   onChange,
 }: checkBoxProps) => {
+  const inputElm = useRef<HTMLInputElement>(null);
+
+  const handelClick = (e: any) => {
+    // prevent double clicks
+    if (inputElm.current && inputElm.current.contains(e.target)) {
+      return;
+    }
+    inputElm.current?.click();
+  };
   return (
-    <span className="group flex cursor-pointer flex-row-reverse items-center justify-end gap-2 rounded text-slate-600 transition-all hover:bg-slate-100">
-      <label htmlFor="makeup">{title}</label>
+    <span
+      className="group flex cursor-pointer flex-row-reverse items-center justify-end gap-2 rounded text-slate-600 transition-all hover:bg-slate-100"
+      onClick={handelClick}
+    >
+      <label htmlFor="makeup" className="cursor-pointer select-none">
+        {title}
+      </label>
       <input
+        ref={inputElm}
         type="checkbox"
         className={className + " size-4 cursor-pointer accent-black"}
         checked={checked}
