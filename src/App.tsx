@@ -6,15 +6,17 @@ import Footer from "./comp/Footer";
 import Card from "./comp/Card";
 import ShopPage from "./comp/ShopPage";
 import { Outlet } from "react-router-dom";
+import { likedItems } from "./context";
 
 function App() {
-  const [items, setItems] = useState<Product[]>();
+  const [likedProudcts, setLikedProducts] = useState<Product[]>([]);
+  const [items, setItems] = useState("as");
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/products/?limit=5")
-      .then((res) => res.json())
-      .then((json) => setItems(json.products));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://dummyjson.com/products/?limit=5")
+  //     .then((res) => res.json())
+  //     .then((json) => setItems(json.products));
+  // }, []);
 
   // <ShopPage>
   // {items &&
@@ -27,9 +29,15 @@ function App() {
   //         />
   // ))}
   // </ShopPage>
+
+  const ss = () => console.log("ckicjed");
   return (
     <>
-      <Header />
+      <likedItems.Provider value={setItems}>
+        <Header />
+      </likedItems.Provider>
+      {items}
+
       <Outlet />
 
       <Footer />
