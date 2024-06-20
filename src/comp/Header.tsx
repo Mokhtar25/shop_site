@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [current, setCurrent] = useState("home");
@@ -16,24 +17,27 @@ export default function Header() {
   return (
     <nav className="flex h-16 bg-slate-100">
       <ul className="flex w-full flex-row-reverse items-center justify-center gap-8 text-xl text-slate-800">
-        <li
+        <Link
+          to="/about"
           className={stylelink + (current === "about" ? " " + activeStyle : "")}
           onClick={() => handelClick("about")}
         >
           About
-        </li>
-        <li
+        </Link>
+        <Link
+          to="/"
           className={stylelink + (current === "home" ? " " + activeStyle : "")}
           onClick={() => handelClick("home")}
         >
           Home
-        </li>
-        <li
+        </Link>
+        <Link
+          to="/shop"
           className={stylelink + (current === "shop" ? " " + activeStyle : "")}
           onClick={() => handelClick("shop")}
         >
           Shop
-        </li>
+        </Link>
       </ul>
     </nav>
   );

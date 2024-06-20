@@ -5,6 +5,7 @@ import Header from "./comp/Header";
 import Footer from "./comp/Footer";
 import Card from "./comp/Card";
 import ShopPage from "./comp/ShopPage";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [items, setItems] = useState<Product[]>();
@@ -15,20 +16,21 @@ function App() {
       .then((json) => setItems(json.products));
   }, []);
 
+  // <ShopPage>
+  // {items &&
+  //     items.map((e) => (
+  //         <Card
+  //         key={e.id}
+  //         product={e}
+  //         handelClickOpen={() => void 0}
+  //         handelClickAddToCard={() => void 0}
+  //         />
+  // ))}
+  // </ShopPage>
   return (
     <>
       <Header />
-      <ShopPage>
-        {items &&
-          items.map((e) => (
-            <Card
-              key={e.id}
-              product={e}
-              handelClickOpen={() => void 0}
-              handelClickAddToCard={() => void 0}
-            />
-          ))}
-      </ShopPage>
+      <Outlet />
 
       <Footer />
     </>
