@@ -6,17 +6,19 @@ import Footer from "./comp/Footer";
 import Card from "./comp/Card";
 import ShopPage from "./comp/ShopPage";
 import { Outlet } from "react-router-dom";
-import { likedItems } from "./context";
+import { ContextItems, itemsContext } from "./context";
+import { products as productsProvider } from "./context";
 
 function App() {
   const [likedProudcts, setLikedProducts] = useState<Product[]>([]);
-  const [items, setItems] = useState("as");
+  const [items, setItems] = useState<Product[]>([]);
+  const [cardItems, setCardItems] = useState<Product[]>([]);
 
-  // useEffect(() => {
-  //   fetch("https://dummyjson.com/products/?limit=5")
-  //     .then((res) => res.json())
-  //     .then((json) => setItems(json.products));
-  // }, []);
+  useEffect(() => {
+    fetch("https://dummyjson.com/products/?limit=5")
+      .then((res) => res.json())
+      .then((json) => setItems(json.products));
+  }, []);
 
   // <ShopPage>
   // {items &&
@@ -30,15 +32,26 @@ function App() {
   // ))}
   // </ShopPage>
 
-  const ss = () => console.log("ckicjed");
+  const context: ContextItems = {
+    liked: {
+      likedItems: likedProudcts,
+      setLikedItems: setLikedProducts,
+    },
+    card: {
+      cardItems: cardItems,
+      setCardItems: setCardItems,
+    },
+  };
+
   return (
     <>
-      <likedItems.Provider value={setItems}>
+      <itemsContext.Provider value={context}>
         <Header />
-      </likedItems.Provider>
-      {items}
+      </itemsContext.Provider>
 
-      <Outlet />
+      <productsProvider.Provider value={items}>
+        <Outlet />
+      </productsProvider.Provider>
 
       <Footer />
     </>
