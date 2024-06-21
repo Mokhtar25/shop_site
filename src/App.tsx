@@ -31,10 +31,15 @@ function App({ Error = false }) {
   // ))}
   // </ShopPage>
 
+  const set = (e: any) => {
+    console.log(e, "run");
+    setLikedProducts(e);
+  };
   const context: ContextItems = {
     liked: {
       likedItems: likedProudcts,
-      setLikedItems: setLikedProducts,
+      //@ts-ignore
+      setLikedItems: set,
     },
     card: {
       cardItems: cardItems,
@@ -61,10 +66,11 @@ function App({ Error = false }) {
         <Header />
       </itemsContext.Provider>
 
-      <productsProvider.Provider value={items}>
-        <Outlet />
-      </productsProvider.Provider>
-
+      <itemsContext.Provider value={context}>
+        <productsProvider.Provider value={items}>
+          <Outlet />
+        </productsProvider.Provider>
+      </itemsContext.Provider>
       <Footer />
     </>
   );

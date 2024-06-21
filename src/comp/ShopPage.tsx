@@ -2,7 +2,7 @@ import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
-import { products } from "../context";
+import { itemsContext, products } from "../context";
 import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
 import { LoadingCard } from "./Loadingcard";
@@ -30,11 +30,13 @@ const setCat = () => {
 };
 
 export default function ShopPage() {
+  const test = useContext(itemsContext);
   const [selection, setSelection] = useState<Catgories[]>(setCat());
   const [currentCat, setCurrentCat] = useState("all");
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " ";
+  console.log(test.liked.likedItems);
 
   const fetchItems = (e: string, abort: AbortController) => {
     if (e === "all") {

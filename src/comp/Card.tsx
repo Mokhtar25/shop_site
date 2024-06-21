@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import { Product } from "../types";
 import { redirectDocument } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { itemsContext } from "../context";
+
 interface Props {
   product: Product;
   fav?: boolean;
@@ -16,15 +18,42 @@ const Card = ({
   handelClickAddToCard,
 }: Props) => {
   const [isFav, setFav] = useState(fav);
+
   const nav = useNavigate();
+  const itemsHandeler = useContext(itemsContext);
+
+  if (itemsHandeler.liked.likedItems && !isFav) {
+    const index = itemsHandeler.liked.likedItems.findIndex(
+      (e) => e.id === product.id,
+    );
+    if (index !== -1) setFav(true);
+  }
+
   const handelClick = () => {
     return nav(`/shop/${product.id}`);
   };
 
-  const handelFavClick = (e) => {
+  const handelFavClick = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation();
-
     setFav(!isFav);
+
+    const addFunc = itemsHandeler.liked.setLikedItems;
+
+    const index = itemsHandeler.liked.likedItems.findIndex(
+      (e) => e.id === product.id,
+    );
+
+    if (isFav === true) {
+      addFunc(
+        itemsHandeler.liked.likedItems.filter((e) => e.id !== product.id),
+      );
+
+      return;
+    }
+
+    if (index === -1) {
+      addFunc([...itemsHandeler.liked.likedItems, product]);
+    }
   };
 
   return (
@@ -56,12 +85,12 @@ interface IconProps {
   className: string;
   [key: string]: any; // Allow any additional props
   active: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<SVGElement>) => void;
 }
 
 const HeartIcon = ({ className, active, onClick, ...props }: IconProps) => (
   <svg
-    onClick={onClick}
+    onClick={(e) => onClick(e)}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     className={(active ? "fill-rose-600 " : "fill-white ") + className}
