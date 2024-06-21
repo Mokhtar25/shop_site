@@ -6,6 +6,7 @@ import { products } from "../context";
 import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
 import { LoadingCard } from "./Loadingcard";
+import { Link } from "react-router-dom";
 
 const catgories = ["beauty", "fragrances", "skin-care", "sunglasses"];
 

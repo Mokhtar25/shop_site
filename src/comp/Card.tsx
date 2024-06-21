@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Product } from "../types";
-
+import { redirectDocument } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 interface Props {
   product: Product;
   fav?: boolean;
@@ -15,13 +16,22 @@ const Card = ({
   handelClickAddToCard,
 }: Props) => {
   const [isFav, setFav] = useState(fav);
+  const nav = useNavigate();
+  const handelClick = () => {
+    return nav(`/shop/${product.id}`);
+  };
 
-  const handelFavClick = () => {
+  const handelFavClick = (e) => {
+    e.stopPropagation();
+
     setFav(!isFav);
   };
 
   return (
-    <div className="group relative flex h-72 w-52 cursor-pointer select-none flex-col items-center justify-between rounded border-2 border-white p-4 before:absolute before:bottom-0 before:-z-30 before:h-[40%] before:w-full before:bg-pink-400 before:content-['']">
+    <div
+      className="group relative flex h-72 w-52 cursor-pointer select-none flex-col items-center justify-between rounded border-2 border-white p-4 before:absolute before:bottom-0 before:-z-30 before:h-[40%] before:w-full before:bg-pink-400 before:content-['']"
+      onClick={handelClick}
+    >
       <img
         src={product.images[0]}
         alt={"Picture of " + product.title}
@@ -34,9 +44,9 @@ const Card = ({
         {product.price}€
       </span>
       <HeartIcon
-        className="absolute bottom-2 right-2 size-6 active:animate-ping"
+        className="absolute bottom-2 right-2 z-50 size-6 active:animate-ping"
         active={isFav}
-        onClick={handelFavClick}
+        onClick={(e) => handelFavClick(e)}
       />
     </div>
   );

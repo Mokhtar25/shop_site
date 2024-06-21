@@ -14,7 +14,7 @@ function App({ Error = false }) {
   const [cardItems, setCardItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/?limit=5")
+    fetch("https://dummyjson.com/products/?limit=50")
       .then((res) => res.json())
       .then((json) => setItems(json.products));
   }, []);
