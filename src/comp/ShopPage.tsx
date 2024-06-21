@@ -34,10 +34,8 @@ export default function ShopPage() {
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " ";
-  console.log("itemss,", items);
 
   const fetchItems = (e: string) => {
-    console.log(e);
     if (e === "all") {
       setItems(allItems);
     } else {
@@ -53,13 +51,17 @@ export default function ShopPage() {
   ) => {
     setSelection(
       selection.map((ele) =>
-        ele.id === elementId ? { ...ele, selected: e.target.checked } : ele,
+        ele.id === elementId
+          ? { ...ele, selected: e.target.checked }
+          : { ...ele, selected: false },
       ),
     );
     const index = selection.findIndex((e) => e.id === elementId);
     setCurrentCat(selection[index].name);
   };
 
+  /// add loading state, when fetching new catagory and let skleton shape take over to show responsivines
+  //  also dynamiclly genrate loading cards based on the length of the current card.
   return (
     <div className="flex h-fit border-2 border-pink-50">
       <aside className="flex w-1/3 flex-col gap-8 bg-white text-black">
@@ -82,7 +84,7 @@ export default function ShopPage() {
           ))}
         </ul>
       </aside>
-      <main className="flex min-h-screen w-[100%] flex-wrap gap-24 p-12 pl-20">
+      <main className="flex min-h-dvh w-[100%] flex-wrap gap-24 p-12 pl-20">
         {items && items.length > 0 ? (
           items.map((e: any) => (
             <Card
