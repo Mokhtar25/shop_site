@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { itemsContext } from "../context";
 import CardDrop from "./CardDrop";
 
+// for the header you can also make a new compantent to display the items and pass them down as childern
 export default function Header() {
   const [current, setCurrent] = useState("home");
   const items = useContext(itemsContext);
