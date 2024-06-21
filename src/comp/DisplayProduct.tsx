@@ -1,17 +1,42 @@
 import { useContext } from "react";
-import { products } from "../context";
-import { redirectDocument, useParams } from "react-router-dom";
+import { itemsContext, products } from "../context";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function DisplayProduct() {
+  const nav = useNavigate();
   const items = useContext(products);
+  const listItems = useContext(itemsContext);
   const { id } = useParams();
 
-  if (!id || !items || items.length < +id) return redirectDocument("/");
+  if (!id || !items || items.length < +id) return nav("/");
 
   const item = items.find((e) => e.id === +id);
+  if (!item) return nav("/");
+
+  const addToCart = () => {
+    console.log(listItems.card.cardItems);
+    const index = listItems.card.cardItems.findIndex(
+      (e) => e.product.id === item.id,
+    );
+
+    if (index === -1) {
+      listItems.card.setCardItems([
+        ...listItems.card.cardItems,
+        { product: item, amount: 1 },
+      ]);
+    } else {
+      listItems.card.setCardItems(
+        listItems.card.cardItems.map((ele) =>
+          ele.product.id === item.id
+            ? { product: ele.product, amount: ele.amount + 1 }
+            : ele,
+        ),
+      );
+    }
+  };
 
   return (
-    <div className="flex min-h-[600px] flex-grow flex-col justify-start border-2 border-blue-400 p-20 sm:flex-row">
+    <div className="flex min-h-[500px] flex-grow flex-col justify-start border-2 border-blue-400 p-20 sm:flex-row">
       <img
         className="size-[450px] min-h-96 min-w-96 cursor-pointer rounded-lg bg-slate-100 bg-opacity-25 transition-all duration-700 hover:scale-110"
         src={item?.images[0]}
@@ -31,8 +56,10 @@ export default function DisplayProduct() {
         <span className="absolute right-2 top-12 text-lg text-amber-50">
           {item?.rating}/5 ({item?.reviews.length})
         </span>
-        <button className="mt-16 h-10 rounded-xl border-2 border-white transition-all duration-200 hover:bg-neutral-500 hover:bg-opacity-25 active:bg-opacity-100">
-          {" "}
+        <button
+          onClick={addToCart}
+          className="mt-16 h-10 rounded-xl border-2 border-white transition-all duration-200 hover:bg-neutral-500 hover:bg-opacity-25 active:bg-opacity-100"
+        >
           Add to Cart
         </button>
       </div>

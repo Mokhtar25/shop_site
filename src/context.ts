@@ -12,9 +12,14 @@ export interface ContextItems {
     setLikedItems: (e: Product[]) => void;
   };
   card: {
-    cardItems: Product[];
-    setCardItems: (e: Product[]) => void;
+    cardItems: CardItem[];
+    setCardItems: (e: CardItem[]) => void;
   };
+}
+
+export interface CardItem {
+  product: Product;
+  amount: number;
 }
 export const itemsContext = createContext<ContextItems>({
   liked: {

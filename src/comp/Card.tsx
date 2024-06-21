@@ -1,22 +1,14 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Product } from "../types";
-import { redirectDocument } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { itemsContext } from "../context";
 
 interface Props {
   product: Product;
   fav?: boolean;
-  handelClickOpen: () => void;
-  handelClickAddToCard: () => void;
 }
 
-const Card = ({
-  product,
-  fav = false,
-  handelClickOpen,
-  handelClickAddToCard,
-}: Props) => {
+const Card = ({ product, fav = false }: Props) => {
   const [isFav, setFav] = useState(fav);
 
   const nav = useNavigate();
