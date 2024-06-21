@@ -5,6 +5,7 @@ import Header from "./comp/Header";
 import Footer from "./comp/Footer";
 import ErrorPage from "./comp/ErrorPage";
 import Card from "./comp/Card";
+import DisplayProduct from "./comp/DisplayProduct";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/shop",
-
         element: <ShopPage />,
+      },
+      {
+        path: "/shop/:id",
+        element: <DisplayProduct />,
       },
     ],
   },

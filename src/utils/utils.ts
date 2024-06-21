@@ -6,6 +6,7 @@ export async function getItemsByCat(cat: string, abort: AbortController) {
   } else {
     const datas = await fetch(`https://dummyjson.com/products/category/${cat}`);
     const data = await datas.json();
+    console.log(data);
     return data.products;
   }
 }

@@ -8,11 +8,11 @@ export interface Product {
   category: string;
   images: string[];
   thumbnail: string;
-  shippingInfo: string;
+  shippingInformation: string;
   stock: number;
   tags: string[];
   reviews: Review[];
-  rating: { rate: number; count: number };
+  rating: number;
 }
 
 export interface Review {
