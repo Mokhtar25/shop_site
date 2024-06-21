@@ -1,14 +1,18 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { itemsContext } from "../context";
-import cart from "../assets/cart.svg";
 import CardDrop from "./CardDrop";
 
 export default function Header() {
   const [current, setCurrent] = useState("home");
   const items = useContext(itemsContext);
+  const [openCart, setOpenCart] = useState(false);
 
+  const handelOpenCart = () => {
+    setOpenCart(!openCart);
+  };
   const handelClick = (type: "home" | "about" | "shop") => {
+    setOpenCart(true);
     setCurrent(type);
   };
 
@@ -44,11 +48,12 @@ export default function Header() {
         <div className="relative">
           <CartIcon
             className="size-6 cursor-pointer select-none fill-black hover:scale-105 active:fill-gray-400"
-            onClick={() => void 0}
+            onClick={handelOpenCart}
           />
           <CardDrop
+            open={handelOpenCart}
             ProductList={items.card.cardItems}
-            hidden={false}
+            hide={openCart}
           ></CardDrop>
         </div>
       </ul>
