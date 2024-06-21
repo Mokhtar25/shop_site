@@ -35,15 +35,20 @@ export default function ShopPage() {
   const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " ";
 
-  const fetchItems = (e: string) => {
+  const fetchItems = (e: string, abort: AbortController) => {
     if (e === "all") {
       setItems(allItems);
     } else {
-      getItemsByCat(e).then((e) => setItems(e));
+      getItemsByCat(e, abort).then((e) => setItems(e));
     }
   };
 
-  useEffect(() => fetchItems(currentCat), [currentCat, allItems]);
+  useEffect(() => {
+    const abort = new AbortController();
+    fetchItems(currentCat, abort);
+
+    return () => abort.abort();
+  }, [currentCat, allItems]);
 
   const handelChange = (
     e: ChangeEvent<HTMLInputElement>,
