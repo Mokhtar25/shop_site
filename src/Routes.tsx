@@ -6,6 +6,7 @@ import Footer from "./comp/Footer";
 import ErrorPage from "./comp/ErrorPage";
 import Card from "./comp/Card";
 import DisplayProduct from "./comp/DisplayProduct";
+import { CheckoutPage } from "./comp/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         path: "/shop/:id",
         element: <DisplayProduct />,
       },
+      { path: "/checkout", element: <CheckoutPage /> },
     ],
   },
 ]);

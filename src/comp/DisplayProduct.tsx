@@ -1,20 +1,28 @@
-import { useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import { itemsContext, products } from "../context";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function DisplayProduct() {
+const DisplayProduct = () => {
   const nav = useNavigate();
   const items = useContext(products);
   const listItems = useContext(itemsContext);
-  const { id } = useParams();
-
-  if (!id || !items || items.length < +id) return nav("/");
-
+  let { id }: any = useParams();
+  if (!id) id = -1;
   const item = items.find((e) => e.id === +id);
-  if (!item) return nav("/");
 
+  useEffect(() => {
+    if (!id || !items || items.length < +id) {
+      nav("/");
+      return;
+    }
+    if (!item) {
+      nav("/");
+      return;
+    }
+  }, []);
+
+  if (!item) return;
   const addToCart = () => {
-    console.log(listItems.card.cardItems);
     const index = listItems.card.cardItems.findIndex(
       (e) => e.product.id === item.id,
     );
@@ -65,7 +73,7 @@ export default function DisplayProduct() {
       </div>
     </div>
   );
-}
+};
 
 const InStock = ({ className }: { className: string }) => {
   return (
@@ -78,3 +86,5 @@ const InStock = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
+export default DisplayProduct;
