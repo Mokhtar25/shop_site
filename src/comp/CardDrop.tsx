@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { CardItem, products } from "../context";
-import { SetStateAction, useRef, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { CardItem } from "../context";
+import { SetStateAction, useRef } from "react";
 
 interface CardDropProps {
   ProductList: CardItem[];
@@ -19,9 +19,9 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
   div.current?.addEventListener("mouseleave", () => {
     console.log("run mouseleabe"), open(true);
   });
-  // window.addEventListener("scroll", () => {
-  //   if (hide !== true) return open(true);
-  // });
+  window.addEventListener("scroll", () => {
+    if (hide !== true) return open(true);
+  });
 
   const handelClick = (ele: CardItem) => {
     nav(`/shop/${ele.product.id}`);
@@ -62,8 +62,11 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
       )}
 
       {ProductList.length !== 0 && (
-        <div className="absolute bottom-0 h-12 w-full bg-red-100">
-          {finialPrice}€
+        <div className="absolute bottom-0 flex h-12 w-full items-center justify-between bg-red-100 px-4">
+          <button className="rounded-lg border-2 border-black bg-slate-100 bg-opacity-60 p-1 hover:bg-opacity-90">
+            <Link to={"/checkout"}>Checkout</Link>
+          </button>
+          <span> Total : {finialPrice}€</span>
         </div>
       )}
     </div>
