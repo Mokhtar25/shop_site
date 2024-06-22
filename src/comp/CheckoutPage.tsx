@@ -20,7 +20,7 @@ export const CheckoutPage = () => {
         </div>
       </div>
 
-      <div className="relative flex w-1/3 justify-center pt-8 text-black">
+      <div className="relative flex w-1/3 justify-center pt-16 text-black">
         <div className="fixed flex h-fit flex-col rounded-lg border-[1px] border-black p-8 px-16 py-12">
           <h2 className="text-2xl text-black">Order Summary</h2>
           <span className="my-8 text-xl font-bold text-black">{total}€</span>
@@ -30,7 +30,7 @@ export const CheckoutPage = () => {
           <span className="mx-auto my-8 mt-16 h-1 w-[100%] rounded-lg bg-slate-600 bg-opacity-50"></span>
           <button
             disabled={true}
-            className="shake mx-auto h-16 w-2/3 cursor-not-allowed rounded-lg bg-red-900 text-xl text-neutral-200 transition-all hover:brightness-75"
+            className="shake mx-auto h-16 w-2/3 cursor-not-allowed rounded-lg bg-rose-700 text-xl text-neutral-200 transition-all hover:brightness-75"
           >
             Checkout
           </button>
