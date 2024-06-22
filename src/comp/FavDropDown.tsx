@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { SetStateAction } from "react";
+import { SetStateAction, useRef } from "react";
 import { Product } from "../types";
 
-interface CardDropProps {
+interface FavDropProps {
   favList: Product[];
   hide: boolean;
   open: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export default function CardDrop({ favList, hide, open }: CardDropProps) {
+export default function FavDropDown({ favList, hide, open }: FavDropProps) {
   const nav = useNavigate();
+  const div = useRef<HTMLDivElement>(null);
 
+  div.current?.addEventListener("mouseleave", () => {
+    open(true);
+  });
   const handelClick = (ele: Product) => {
     nav(`/shop/${ele.id}`);
     open(true);
@@ -18,22 +22,20 @@ export default function CardDrop({ favList, hide, open }: CardDropProps) {
 
   return (
     <div
+      ref={div}
       className={
-        "absolute right-[50%] top-10 z-[99] mx-auto box-border w-96 divide-y-2 divide-black overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300" +
-        (hide ? " h-0" : " h-[500px] border-2")
+        "no-scrollbar absolute right-[25%] top-16 z-[99] mx-auto box-border w-96 select-none divide-y-2 divide-rose-200 overflow-y-scroll rounded-lg bg-neutral-200 outline-red-300 transition-all duration-300" +
+        (hide ? " h-0" : " h-[500px] border-4 border-neutral-500")
       }
     >
       {favList.map((ele) => (
         <div
-          key={ele.id + 1000}
+          key={ele.id + 8000}
           onClick={() => handelClick(ele)}
           className="relative flex h-fit min-h-14 cursor-pointer items-center justify-start bg-white py-4 text-lg hover:bg-slate-100"
         >
           <img className="size-14" src={ele.thumbnail} alt={ele.title}></img>
-          <div className="line-clamp-1 max-w-[60%] text-ellipsis">
-            {ele.title}
-          </div>
-          <div className="absolute right-2 top-1">{ele.price}€</div>
+          <div className="p-1">{ele.title}</div>
         </div>
       ))}
 

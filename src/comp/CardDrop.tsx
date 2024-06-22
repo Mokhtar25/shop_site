@@ -17,10 +17,7 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
 
   const div = useRef<HTMLDivElement>(null);
   div.current?.addEventListener("mouseleave", () => {
-    console.log("run mouseleabe"), open(true);
-  });
-  window.addEventListener("scroll", () => {
-    if (hide !== true) return open(true);
+    open(true);
   });
 
   const handelClick = (ele: CardItem) => {
@@ -32,8 +29,8 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
     <div
       ref={div}
       className={
-        "absolute right-[50%] top-10 z-[99] mx-auto box-border w-96 divide-y-2 divide-black overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300" +
-        (hide ? " h-0" : " h-[500px] border-2")
+        "no-scrollbar absolute right-[51%] top-16 z-[99] box-border w-96 divide-y-2 divide-black overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300" +
+        (hide ? " h-0" : " h-[500px] border-4 border-neutral-600")
       }
     >
       {ProductList.map((ele) => (

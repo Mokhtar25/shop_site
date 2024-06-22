@@ -80,7 +80,12 @@ interface IconProps {
   onClick: (e: React.MouseEvent<SVGElement>) => void;
 }
 
-const HeartIcon = ({ className, active, onClick, ...props }: IconProps) => (
+export const HeartIcon = ({
+  className,
+  active,
+  onClick,
+  ...props
+}: IconProps) => (
   <svg
     onClick={(e) => onClick(e)}
     xmlns="http://www.w3.org/2000/svg"
