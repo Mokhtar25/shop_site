@@ -54,12 +54,12 @@ const Card = ({ product, fav = false }: Props) => {
       onClick={handelClick}
     >
       <img
+        loading="lazy"
         src={product.images[0]}
         alt={"Picture of " + product.title}
         // add not hover to avoid mouse issues
         className="size-40 drop-shadow-lg transition-all duration-500 ease-out group-hover:pointer-events-none group-hover:z-50 group-hover:mb-10 group-hover:-translate-y-16 group-hover:scale-[200%]"
       ></img>
-
       <h1 className="text-center"> {product.title} </h1>
       <span className="mb-2 overflow-hidden duration-500 ease-in-out group-hover:mt-10 group-hover:transition-all">
         {product.price}€

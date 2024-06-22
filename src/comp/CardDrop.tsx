@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { CardItem } from "../context";
+import { CardItem, products } from "../context";
 import { SetStateAction, useRef, useState } from "react";
 
 interface CardDropProps {
@@ -19,14 +19,15 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
   div.current?.addEventListener("mouseleave", () => {
     console.log("run mouseleabe"), open(true);
   });
-  window.addEventListener("scroll", () => {
-    if (hide !== true) return open(true);
-  });
+  // window.addEventListener("scroll", () => {
+  //   if (hide !== true) return open(true);
+  // });
 
   const handelClick = (ele: CardItem) => {
     nav(`/shop/${ele.product.id}`);
     open(true);
   };
+
   return (
     <div
       ref={div}
@@ -37,6 +38,7 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
     >
       {ProductList.map((ele) => (
         <div
+          key={ele.product.id + 1000}
           onClick={() => handelClick(ele)}
           className="relative flex h-fit min-h-14 cursor-pointer items-center justify-start bg-white py-4 text-lg hover:bg-slate-100"
         >
@@ -55,9 +57,15 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
         </div>
       ))}
 
-      <div className="absolute bottom-0 h-12 w-full bg-red-100">
-        {finialPrice}€
-      </div>
+      {ProductList.length === 0 && (
+        <h2 className="mx-auto mt-[50%] w-fit">Your cart is empty</h2>
+      )}
+
+      {ProductList.length !== 0 && (
+        <div className="absolute bottom-0 h-12 w-full bg-red-100">
+          {finialPrice}€
+        </div>
+      )}
     </div>
   );
 }
