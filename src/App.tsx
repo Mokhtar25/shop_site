@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import { CardItem, ContextItems, itemsContext } from "./context";
 import { products as productsProvider } from "./context";
 import ErrorPage from "./comp/ErrorPage";
+import { getBasicItems } from "./utils/utils";
 
 function App({ Error = false }) {
   const [likedProudcts, setLikedProducts] = useState<Product[]>([]);
@@ -15,9 +16,7 @@ function App({ Error = false }) {
 
   // fixing the issue of missing data is a must and which catagories to fetch
   useEffect(() => {
-    fetch("https://dummyjson.com/products/?limit=50")
-      .then((res) => res.json())
-      .then((json) => setItems(json.products));
+    getBasicItems().then((re) => setItems(re));
   }, []);
 
   const context: ContextItems = {

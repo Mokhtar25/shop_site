@@ -1,4 +1,16 @@
-const arr = [1, 3, 4, 5, 2, 3, 9];
+export async function getBasicItems() {
+  const baseUrl = "https://dummyjson.com/products/category/";
+  const list = [
+    baseUrl + "mens-watches",
+    baseUrl + "mens-watches",
+    baseUrl + "skin-care",
+    baseUrl + "sunglasses",
+  ];
+  const data = await Promise.all(list.map((e) => fetch(e)))
+    .then((res) => Promise.all(res.map((re) => re.json())))
+    .then((r) => r.flatMap((ss) => ss.products));
 
-console.log(arr.slice(1, 1));
-console.log(arr);
+  return data;
+}
+
+getBasicItems();

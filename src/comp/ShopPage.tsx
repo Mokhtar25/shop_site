@@ -7,7 +7,7 @@ import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
 import { LoadingCard } from "./Loadingcard";
 
-const catgories = ["beauty", "fragrances", "skin-care", "sunglasses"];
+const catgories = ["beauty", "mens-watches", "skin-care", "sunglasses"];
 
 interface Catgories {
   id: string;
@@ -61,6 +61,14 @@ export default function ShopPage() {
           : { ...ele, selected: false },
       ),
     );
+
+    const all = selection.find((e) => e.selected === true);
+    if (all !== undefined) {
+      setCurrentCat("all");
+      return;
+    }
+    console.log(all);
+
     const index = selection.findIndex((e) => e.id === elementId);
     setCurrentCat(selection[index].name);
   };
