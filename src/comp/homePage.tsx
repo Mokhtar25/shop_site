@@ -4,7 +4,7 @@ const pictureUrl =
 
 export default function HomePage() {
   return (
-    <div className="flex h-[600px] flex-col bg-slate-300 text-8xl">
+    <div className="flex h-[600px] flex-col bg-slate-100 bg-opacity-80 text-8xl">
       <div className="absolute bottom-3/4 right-40">
         Welcome to{" "}
         <span className="pinkColor animate-pulse font-medium">Sea shop</span>
