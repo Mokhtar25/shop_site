@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { CardItem, itemsContext } from "../context";
-import { getTotalPrice } from "../utils/utilsItems";
+import { CardItem, ContextItems, itemsContext } from "../context";
+import { getTotalPrice, removeFromCard } from "../utils/utilsItems";
 
 export const CheckoutPage = () => {
   const items = useContext(itemsContext);
@@ -16,13 +16,17 @@ export const CheckoutPage = () => {
         <div className="divide-y-2 divide-slate-300 pl-1">
           {items.card.cardItems.length !== 0 &&
             items.card.cardItems.map((ele) => (
-              <ItemCard key={ele.product.id - 1000} product={ele} />
+              <ItemCard
+                key={ele.product.id - 1000}
+                product={ele}
+                contextItems={items}
+              />
             ))}
         </div>
       </div>
 
       <div className="relative flex w-1/3 justify-center pt-16 text-black">
-        <div className="fixed flex h-fit flex-col rounded-lg border-[1px] border-black p-8 px-16 py-12">
+        <div className="fixed flex h-fit flex-col rounded-lg border-[1px] border-slate-400 p-8 px-16 py-12">
           <h2 className="text-2xl text-black">Order Summary</h2>
           <span className="my-8 text-xl font-bold text-black">{total}€</span>
           <span className="text-slate-700">
@@ -41,19 +45,32 @@ export const CheckoutPage = () => {
   );
 };
 
-const ItemCard = ({ product }: { product: CardItem }) => {
+const ItemCard = ({
+  contextItems,
+  product,
+}: {
+  contextItems: ContextItems;
+  product: CardItem;
+}) => {
+  const handelClick = () => {
+    removeFromCard(contextItems, product.product, 0);
+  };
   return (
-    <div className="flex border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
+    <div className="flex rounded-lg border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
       <img
         src={product.product.thumbnail}
         alt={product.product.title}
-        className="size-40 overflow-hidden bg-slate-100 bg-opacity-60"
+        className="size-40 overflow-hidden"
       ></img>
       <div className="flex flex-col p-8">
         <h3 className="text-xl">{product.product.title}</h3>
         <h3> Quantity : {product.amount}</h3>
         <span>{product.product.shippingInformation}</span>
         <span className=""> {product.product.price}€</span>
+        <button className="size-16 bg-red-600" onClick={handelClick}>
+          {" "}
+          remove -{" "}
+        </button>
       </div>
     </div>
   );

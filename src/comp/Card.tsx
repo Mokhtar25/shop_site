@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Product } from "../types";
 import { useNavigate } from "react-router-dom";
 import { itemsContext } from "../context";
+import { addItemToFav } from "../utils/utilsItems";
 
 interface Props {
   product: Product;
@@ -28,24 +29,7 @@ const Card = ({ product, fav = false }: Props) => {
   const handelFavClick = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation();
     setFav(!isFav);
-
-    const addFunc = itemsHandeler.liked.setLikedItems;
-
-    const index = itemsHandeler.liked.likedItems.findIndex(
-      (e) => e.id === product.id,
-    );
-
-    if (isFav === true) {
-      addFunc(
-        itemsHandeler.liked.likedItems.filter((e) => e.id !== product.id),
-      );
-
-      return;
-    }
-
-    if (index === -1) {
-      addFunc([...itemsHandeler.liked.likedItems, product]);
-    }
+    addItemToFav(itemsHandeler, product);
   };
 
   return (
