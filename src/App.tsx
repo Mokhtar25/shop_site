@@ -45,7 +45,7 @@ function App({ Error = false }) {
     );
 
   return (
-    <>
+    <div className="flex flex-col justify-between">
       <itemsContext.Provider value={context}>
         <Header />
       </itemsContext.Provider>
@@ -56,7 +56,7 @@ function App({ Error = false }) {
         </productsProvider.Provider>
       </itemsContext.Provider>
       <Footer />
-    </>
+    </div>
   );
 }
 

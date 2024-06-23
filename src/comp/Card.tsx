@@ -49,7 +49,7 @@ const Card = ({ product, fav = false }: Props) => {
         {product.price}€
       </span>
       <HeartIcon
-        className="absolute bottom-2 right-2 z-50 size-6 active:animate-ping"
+        className="absolute bottom-2 right-2 z-10 size-6 active:animate-ping"
         active={isFav}
         onClick={(e) => handelFavClick(e)}
       />

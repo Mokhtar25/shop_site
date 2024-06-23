@@ -18,7 +18,7 @@ export default function HomePage() {
 
       <div className="absolute right-40 top-[40%] flex flex-col items-center justify-center gap-10 text-4xl">
         <div>
-          Shop <span className="pinkColor">world class </span>beaty products
+          Shop <span className="pinkColor">world class </span>beauty Products
         </div>
         <Link to={"/shop"}>
           <button className="ml-2/4 bg-pink rounded-xl border-2 border-white p-6 transition-all hover:brightness-110 active:scale-50">
