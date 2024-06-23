@@ -15,7 +15,7 @@ export default function HomePage() {
         src={pictureUrl}
       ></img>
 
-      <div className="absolute right-80 top-[40%] flex flex-col items-center justify-center gap-10 text-4xl">
+      <div className="absolute right-40 top-[40%] flex flex-col items-center justify-center gap-10 text-4xl">
         <div>
           Shop <span className="pinkColor">world class </span>beaty products
         </div>
