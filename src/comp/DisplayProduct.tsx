@@ -1,47 +1,29 @@
-import { FC, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { itemsContext, products } from "../context";
 import { useNavigate, useParams } from "react-router-dom";
+import { addItemToCart } from "../utils/utilsItems";
 
 const DisplayProduct = () => {
   const nav = useNavigate();
   const items = useContext(products);
   const listItems = useContext(itemsContext);
-  let { id }: any = useParams();
-  console.log(items, id);
-  if (!id) id = -1;
+  let { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    if (item === undefined || id === undefined) {
+      nav("/notfound");
+      return;
+    }
+  }, []);
+
+  if (!id) return null;
+
   const item = items.find((e) => e.id === +id);
 
-  // useEffect(() => {
-  //   if (!id || !items || items.length < +id) {
-  //     nav("/");
-  //     return;
-  //   }
-  //   if (!item) {
-  //     nav("/");
-  //     return;
-  //   }
-  // }, []);
+  if (!item) return null;
 
-  if (!item) return;
   const addToCart = () => {
-    const index = listItems.card.cardItems.findIndex(
-      (e) => e.product.id === item.id,
-    );
-
-    if (index === -1) {
-      listItems.card.setCardItems([
-        ...listItems.card.cardItems,
-        { product: item, amount: 1 },
-      ]);
-    } else {
-      listItems.card.setCardItems(
-        listItems.card.cardItems.map((ele) =>
-          ele.product.id === item.id
-            ? { product: ele.product, amount: ele.amount + 1 }
-            : ele,
-        ),
-      );
-    }
+    addItemToCart(listItems, item);
   };
 
   return (
