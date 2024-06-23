@@ -12,7 +12,7 @@ export default function Header() {
   const [openFav, setOpenFav] = useState(true);
 
   window.addEventListener("scroll", () => {
-    if (openFav !== true && openCart !== true) {
+    if (openFav !== true || openCart !== true) {
       setOpenFav(true);
       setOpenCart(true);
     }
