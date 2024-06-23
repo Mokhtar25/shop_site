@@ -88,7 +88,7 @@ const ItemCard = ({
         <h3> Quantity : {product.amount}</h3>
         <span>{product.product.shippingInformation}</span>
         <span className=""> {product.product.price}€</span>
-        <span className="absolute right-2/4 top-2/4 flex items-center justify-center gap-x-4">
+        <span className="absolute right-1/4 top-2/4 flex items-center justify-center gap-x-4">
           <button className={countStyle} onClick={handelClick}>
             -
           </button>

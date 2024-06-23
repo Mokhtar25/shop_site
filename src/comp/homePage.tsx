@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 const pictureUrl =
   "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png";
 
+// fix issue with postionen the picture on the web. it is possibly difference between reading
 export default function HomePage() {
   return (
     <div className="flex h-[600px] flex-col text-8xl">
       <div className="absolute bottom-3/4 right-40">
-        Welcome to{" "}
+        Welcome to
         <span className="pinkColor animate-pulse font-medium">Sea shop</span>
       </div>
 
       <img
-        className="absolute left-[-80px] top-[-80px] size-[700px] rotate-12 select-none"
+        className="absolute top-[-80px] size-[700px] rotate-12 select-none"
         src={pictureUrl}
       ></img>
 
