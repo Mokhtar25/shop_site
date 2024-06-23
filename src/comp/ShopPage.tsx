@@ -31,9 +31,12 @@ const setCat = () => {
 export default function ShopPage() {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
   const [currentCat, setCurrentCat] = useState("all");
+
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " ";
+  // add a blur or a whitsh overlay over products when reslecting
+  // glitch when switching between catagories directlly
 
   const fetchItems = (e: string, abort: AbortController) => {
     if (e === "all") {
@@ -54,20 +57,18 @@ export default function ShopPage() {
     e: ChangeEvent<HTMLInputElement>,
     elementId: string,
   ) => {
-    setSelection(
-      selection.map((ele) =>
-        ele.id === elementId
-          ? { ...ele, selected: e.target.checked }
-          : { ...ele, selected: false },
-      ),
+    const newArray = selection.map((ele) =>
+      ele.id === elementId
+        ? { ...ele, selected: e.target.checked }
+        : { ...ele, selected: false },
     );
+    setSelection(newArray);
 
-    const all = selection.find((e) => e.selected === true);
-    if (all !== undefined) {
+    const all = newArray.findIndex((e) => e.selected === true);
+    if (all === -1) {
       setCurrentCat("all");
       return;
     }
-    console.log(all);
 
     const index = selection.findIndex((e) => e.id === elementId);
     setCurrentCat(selection[index].name);
