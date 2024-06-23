@@ -3,7 +3,7 @@ import App from "./App";
 import ShopPage from "./comp/ShopPage";
 import DisplayProduct from "./comp/DisplayProduct";
 import { CheckoutPage } from "./comp/CheckoutPage";
-import HomePage from "./comp/homePage";
+import HomePage from "./comp/HomePage";
 
 const router = createBrowserRouter([
   {
