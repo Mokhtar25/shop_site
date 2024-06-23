@@ -5,6 +5,7 @@ import {
   getTotalPrice,
   removeFromCard,
 } from "../utils/utilsItems";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutPage = () => {
   const items = useContext(itemsContext);
@@ -56,6 +57,11 @@ const ItemCard = ({
   contextItems: ContextItems;
   product: CardItem;
 }) => {
+  const nav = useNavigate();
+
+  const handelPage = () => {
+    nav(`/shop/${product.product.id}`);
+  };
   const handelRemove = () => {
     removeFromCard(contextItems, product.product, 1);
   };
@@ -70,12 +76,15 @@ const ItemCard = ({
   return (
     <div className="relative flex rounded-lg border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
       <img
+        onClick={handelPage}
         src={product.product.thumbnail}
         alt={product.product.title}
-        className="size-40 overflow-hidden"
+        className="size-40 cursor-pointer overflow-hidden"
       ></img>
       <div className="flex flex-col p-8">
-        <h3 className="text-xl">{product.product.title}</h3>
+        <h3 className="cursor-pointer text-xl" onClick={handelPage}>
+          {product.product.title}
+        </h3>
         <h3> Quantity : {product.amount}</h3>
         <span>{product.product.shippingInformation}</span>
         <span className=""> {product.product.price}€</span>

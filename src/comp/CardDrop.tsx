@@ -60,12 +60,14 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
 
       {ProductList.length !== 0 && (
         <div className="absolute bottom-0 flex h-12 w-full items-center justify-between bg-slate-100 p-10 px-4">
-          <button
-            onClick={() => open(true)}
-            className="rounded-lg border-2 border-slate-300 bg-slate-100 bg-opacity-60 p-3 hover:brightness-90"
-          >
-            <Link to={"/checkout"}>Checkout</Link>
-          </button>
+          <Link to={"/checkout"}>
+            <button
+              onClick={() => open(true)}
+              className="rounded-lg border-2 border-slate-300 bg-slate-100 bg-opacity-60 p-3 hover:brightness-90"
+            >
+              Checkout
+            </button>
+          </Link>
           <span> Total : {finialPrice}€</span>
         </div>
       )}
