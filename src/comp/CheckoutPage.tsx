@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { CardItem, ContextItems, itemsContext } from "../context";
-import { getTotalPrice, removeFromCard } from "../utils/utilsItems";
+import {
+  addItemToCart,
+  getTotalPrice,
+  removeFromCard,
+} from "../utils/utilsItems";
 
 export const CheckoutPage = () => {
   const items = useContext(itemsContext);
@@ -12,7 +16,7 @@ export const CheckoutPage = () => {
   return (
     <div className="flex min-h-[500px] border-2 bg-slate-100 pb-36">
       <div className="flex-grow flex-col bg-slate-100">
-        <h1 className="p-10 text-3xl text-black">Shopping Cart</h1>
+        <h1 className="pinkColor p-10 text-3xl font-bold">Shopping Cart</h1>
         <div className="divide-y-2 divide-slate-300 pl-1">
           {items.card.cardItems.length !== 0 &&
             items.card.cardItems.map((ele) => (
@@ -52,11 +56,19 @@ const ItemCard = ({
   contextItems: ContextItems;
   product: CardItem;
 }) => {
+  const handelRemove = () => {
+    removeFromCard(contextItems, product.product, 1);
+  };
+  const handelAdd = () => {
+    addItemToCart(contextItems, product.product);
+  };
   const handelClick = () => {
     removeFromCard(contextItems, product.product, 0);
   };
+  const countStyle =
+    "flex size-6 items-center justify-center rounded border-[1px] border-slate-400 p-2 text-xl font-light text-slate-500";
   return (
-    <div className="flex rounded-lg border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
+    <div className="relative flex rounded-lg border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
       <img
         src={product.product.thumbnail}
         alt={product.product.title}
@@ -67,9 +79,23 @@ const ItemCard = ({
         <h3> Quantity : {product.amount}</h3>
         <span>{product.product.shippingInformation}</span>
         <span className=""> {product.product.price}€</span>
-        <button className="size-16 bg-red-600" onClick={handelClick}>
-          {" "}
-          remove -{" "}
+        <span className="absolute right-2/4 top-2/4 flex items-center justify-center gap-x-4">
+          <button className={countStyle} onClick={handelClick}>
+            -
+          </button>
+          <p className="w-2">{product.amount}</p>
+          <button className={countStyle} onClick={handelAdd}>
+            +
+          </button>
+        </span>
+        <button
+          className="absolute right-4 top-8 size-6 fill-red-300 transition-all hover:fill-rose-500"
+          onClick={handelRemove}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>delete</title>
+            <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+          </svg>
         </button>
       </div>
     </div>

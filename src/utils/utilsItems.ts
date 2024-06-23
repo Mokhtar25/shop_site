@@ -8,7 +8,7 @@ export function getTotalPrice(items: CardItem[]) {
   return total;
 }
 
-export function addItemToFav(itemsHandeler: ContextItems, product: Product) {
+export function toggleToFav(itemsHandeler: ContextItems, product: Product) {
   const addFunc = itemsHandeler.liked.setLikedItems;
 
   const index = itemsHandeler.liked.likedItems.findIndex(

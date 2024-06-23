@@ -44,6 +44,12 @@
     backface-visibility: hidden;
     perspective: 1000px;
   }
+  .pinkColor {
+    background: linear-gradient(50deg, rgb(221, 34, 204), rgb(336, 100, 67));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
   @keyframes shake {
     10%,

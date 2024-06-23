@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Product } from "../types";
 import { useNavigate } from "react-router-dom";
 import { itemsContext } from "../context";
-import { addItemToFav } from "../utils/utilsItems";
+import { toggleToFav } from "../utils/utilsItems";
 
 interface Props {
   product: Product;
@@ -29,7 +29,7 @@ const Card = ({ product, fav = false }: Props) => {
   const handelFavClick = (e: React.MouseEvent<SVGElement>) => {
     e.stopPropagation();
     setFav(!isFav);
-    addItemToFav(itemsHandeler, product);
+    toggleToFav(itemsHandeler, product);
   };
 
   return (
