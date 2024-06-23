@@ -30,7 +30,7 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
       ref={div}
       className={
         "no-scrollbar absolute right-[51%] top-16 z-[99] box-border w-96 divide-y-2 divide-black overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300" +
-        (hide ? " h-0" : " h-[500px] border-4 border-neutral-600")
+        (hide ? " h-0" : " h-[500px] border-2 border-neutral-600")
       }
     >
       {ProductList.map((ele) => (

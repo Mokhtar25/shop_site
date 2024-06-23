@@ -25,7 +25,7 @@ export default function FavDropDown({ favList, hide, open }: FavDropProps) {
       ref={div}
       className={
         "no-scrollbar absolute right-[25%] top-16 z-[99] mx-auto box-border w-96 select-none divide-y-2 divide-rose-200 overflow-y-scroll rounded-lg bg-neutral-200 outline-red-300 transition-all duration-300" +
-        (hide ? " h-0" : " h-[500px] border-4 border-neutral-500")
+        (hide ? " h-0" : " h-[500px] border-2 border-neutral-500")
       }
     >
       {favList.map((ele) => (

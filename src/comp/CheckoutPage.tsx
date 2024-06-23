@@ -74,7 +74,7 @@ const ItemCard = ({
   const countStyle =
     "flex size-6 items-center justify-center rounded border-[1px] border-slate-400 p-2 text-xl font-light text-slate-500";
   return (
-    <div className="relative flex rounded-lg border-neutral-700 bg-neutral-100 bg-opacity-20 text-black hover:bg-neutral-200 hover:bg-opacity-50">
+    <div className="relative flex border-neutral-700 bg-neutral-100 bg-opacity-20 text-black transition-all hover:rounded-lg hover:bg-neutral-200 hover:bg-opacity-50">
       <img
         onClick={handelPage}
         src={product.product.thumbnail}

@@ -21,7 +21,7 @@ export default function Header() {
     setOpenCart(!openCart);
     setOpenFav(true);
   };
-  const handelClick = (type: "home" | "about" | "shop") => {
+  const handelClick = (type: "home" | "shop") => {
     setOpenCart(true);
     setOpenFav(true);
     setCurrent(type);
@@ -48,13 +48,6 @@ export default function Header() {
           open={setOpenFav}
           hide={openFav}
         />
-        <Link
-          to="/about"
-          className={stylelink + (current === "about" ? " " + activeStyle : "")}
-          onClick={() => handelClick("about")}
-        >
-          About
-        </Link>
         <Link
           to="/"
           className={stylelink + (current === "home" ? " " + activeStyle : "")}
