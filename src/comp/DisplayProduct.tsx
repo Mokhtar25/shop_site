@@ -7,19 +7,20 @@ const DisplayProduct = () => {
   const items = useContext(products);
   const listItems = useContext(itemsContext);
   let { id }: any = useParams();
+  console.log(items, id);
   if (!id) id = -1;
   const item = items.find((e) => e.id === +id);
 
-  useEffect(() => {
-    if (!id || !items || items.length < +id) {
-      nav("/");
-      return;
-    }
-    if (!item) {
-      nav("/");
-      return;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!id || !items || items.length < +id) {
+  //     nav("/");
+  //     return;
+  //   }
+  //   if (!item) {
+  //     nav("/");
+  //     return;
+  //   }
+  // }, []);
 
   if (!item) return;
   const addToCart = () => {
