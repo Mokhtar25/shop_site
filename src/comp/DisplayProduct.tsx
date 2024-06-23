@@ -44,7 +44,7 @@ const DisplayProduct = () => {
   };
 
   return (
-    <div className="flex min-h-[500px] flex-grow flex-col justify-start border-2 border-blue-400 p-20 sm:flex-row">
+    <div className="flex min-h-[500px] flex-grow flex-col justify-start p-20 sm:flex-row">
       <img
         className="size-[450px] min-h-96 min-w-96 cursor-pointer rounded-lg bg-slate-100 bg-opacity-25 transition-all duration-700 hover:scale-110"
         src={item?.images[0]}

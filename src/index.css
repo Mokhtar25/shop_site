@@ -50,6 +50,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .bg-pink {
+    background: linear-gradient(50deg, rgb(221, 34, 204), rgb(336, 100, 67));
+  }
 
   @keyframes shake {
     10%,
