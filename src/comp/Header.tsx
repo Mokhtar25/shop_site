@@ -37,7 +37,7 @@ export default function Header() {
   const stylelink =
     "cursor-pointer select-none drop-shadow-md hover:text-slate-600 hover:shadow-black active:text-slate-900 ";
   return (
-    <nav className="relative flex h-16 bg-slate-100">
+    <nav className="relative flex h-16 bg-slate-200 dark:bg-slate-100">
       <ul className="z-50 flex w-full flex-row-reverse items-center justify-center gap-8 text-xl text-slate-800">
         <HeartIcon
           onClick={handelOpenFav}

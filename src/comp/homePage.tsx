@@ -17,7 +17,7 @@ const HomePage = () => {
         <span>Welcome to </span>
         <span className="pinkColor"> Sea shop</span>
       </div>
-      <div className="mr-44 mt-28 box-border flex w-fit flex-col items-center gap-10 text-4xl">
+      <div className="mr-44 mt-20 box-border flex w-fit flex-col items-center gap-10 text-4xl">
         <div>
           Shop{" "}
           <span className="pinkColor box-border animate-pulse">
@@ -26,7 +26,7 @@ const HomePage = () => {
           beauty Products
         </div>
         <Link to={"/shop"}>
-          <button className="ml-2/4 bg-pink rounded-xl border-2 border-white p-6 font-light brightness-90 transition-all hover:brightness-110 active:scale-50">
+          <button className="ml-2/4 bg-pink k rounded-xl border-2 border-white p-6 font-light text-white brightness-90 transition-all hover:brightness-110 active:scale-50">
             Shop now
           </button>
         </Link>
