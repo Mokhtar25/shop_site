@@ -24,7 +24,7 @@ const HomePage = () => {
           beauty Products
         </div>
         <Link to={"/shop"}>
-          <button className="ml-2/4 bg-pink k rounded-xl border-2 border-white p-6 font-light text-white brightness-90 transition-all hover:brightness-110 active:scale-50">
+          <button className="ml-2/4 bg-pink k rounded-xl border-2 border-white p-6 font-light text-white brightness-90 transition-all hover:brightness-110 active:scale-90">
             Shop now
           </button>
         </Link>
