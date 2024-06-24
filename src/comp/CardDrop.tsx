@@ -47,7 +47,7 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
           <div className="line-clamp-1 max-w-[60%] text-ellipsis">
             {ele.product.title}
           </div>
-          <div className="absolute right-2 top-1">{ele.product.price}€</div>
+          <div className="absolute bottom-8 right-4">{ele.product.price}€</div>
           <div className="absolute bottom-1 right-2">
             Quanity : {ele.amount}
           </div>

@@ -85,7 +85,7 @@ export default function ShopPage() {
         </h2>
         <ul className="flex flex-col gap-3 p-4">
           <h2 className="text-xl text-slate-600 before:block before:h-[2px] before:w-10/12 before:bg-slate-400">
-            catgories
+            Categories
           </h2>
           {selection.map((e) => (
             <CheckBox
