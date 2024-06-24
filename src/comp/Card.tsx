@@ -9,7 +9,7 @@ interface Props {
   fav?: boolean;
 }
 
-const Card = ({ product, fav = false }: Props) => {
+const Card = ({ product }: Props) => {
   const itemsHandeler = useContext(itemsContext);
 
   const itemFav = itemsHandeler.liked.likedItems.some(

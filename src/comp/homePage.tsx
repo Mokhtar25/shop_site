@@ -3,8 +3,6 @@ import Mas from "./../assets/mas.png";
 
 // const pictureUrl =
 //   "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png";
-//
-// fix issue with postionen the picture on the web. it is possibly difference between reading
 
 const HomePage = () => {
   return (

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ChangeEvent, SetStateAction, useContext, useRef } from "react";
+import { SetStateAction, useContext, useRef } from "react";
 import { Product } from "../types";
 import { HeartIcon } from "./Card";
 import { itemsContext } from "../context";

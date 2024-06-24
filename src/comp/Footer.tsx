@@ -25,7 +25,10 @@ export default function Footer() {
           <li>FaceBook</li>
           <li>Email</li>
           <li className="cursor-auto pt-8 text-slate-400">
-            &copy; 2024 Mokhtar
+            &copy; 2024{" "}
+            <a href="https://github.com/Mokhtar25" target="_blank">
+              Mokhtar
+            </a>{" "}
           </li>
         </ul>
       </div>

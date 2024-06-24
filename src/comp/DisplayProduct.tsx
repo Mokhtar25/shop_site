@@ -21,11 +21,13 @@ const DisplayProduct = () => {
 
   const item = items.find((e) => e.id === Number(id));
 
-  const inCart =
-    item && listItems.card.cardItems.some((e) => e.product.id === item.id);
+  const inCart = item
+    ? listItems.card.cardItems.some((e) => e.product.id === item.id)
+    : false;
 
-  const isLiked =
-    item && listItems.liked.likedItems.some((e) => e.id === item.id);
+  const isLiked = item
+    ? listItems.liked.likedItems.some((e) => e.id === item.id)
+    : false;
 
   const addToCart = () => {
     if (item) addItemToCart(listItems, item);

@@ -11,9 +11,6 @@ export const CheckoutPage = () => {
   const items = useContext(itemsContext);
   const total = getTotalPrice(items.card.cardItems);
 
-  // add pinkish and the cool gradents to ttitels
-  // add buttons to add and remove the stuff and incress stuff
-  // use inset to make abouslte divs centered
   return (
     <div className="flex min-h-[500px] border-2 bg-slate-100 pb-36">
       <div className="flex-grow flex-col bg-slate-100">
