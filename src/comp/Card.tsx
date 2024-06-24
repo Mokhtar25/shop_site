@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Product } from "../types";
 import { useNavigate } from "react-router-dom";
 import { itemsContext } from "../context";
@@ -10,10 +10,17 @@ interface Props {
 }
 
 const Card = ({ product, fav = false }: Props) => {
-  const [isFav, setFav] = useState(fav);
-
-  const nav = useNavigate();
   const itemsHandeler = useContext(itemsContext);
+
+  const itemFav = itemsHandeler.liked.likedItems.some(
+    (ele) => ele.id === product.id,
+  );
+  const [isFav, setFav] = useState(itemFav);
+
+  useEffect(() => {
+    setFav(itemFav);
+  }, [itemFav]);
+  const nav = useNavigate();
 
   if (itemsHandeler.liked.likedItems && !isFav) {
     const index = itemsHandeler.liked.likedItems.findIndex(
