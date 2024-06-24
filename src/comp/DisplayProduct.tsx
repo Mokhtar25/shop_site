@@ -10,27 +10,29 @@ const DisplayProduct = () => {
   const listItems = useContext(itemsContext);
   let { id } = useParams<{ id: string }>();
 
+  const loading: boolean = items.length === 0;
+
   useEffect(() => {
-    if (item === undefined || id === undefined) {
+    if ((id === undefined || item === undefined) && loading === false) {
       nav("/notfound");
       return;
     }
-  }, []);
+  }, [items]);
 
-  if (!id) return null;
-
+  // @ts-ignore
   const item = items.find((e) => e.id === +id);
 
-  if (!item) return null;
+  // @ts-ignore
   const inCart = listItems.card.cardItems.some((e) => e.product.id === item.id);
 
+  // @ts-ignore
   const isLiked = listItems.liked.likedItems.some((e) => e.id === item.id);
 
   const addToCart = () => {
-    addItemToCart(listItems, item);
+    if (item) addItemToCart(listItems, item);
   };
   const handelFav = () => {
-    toggleToFav(listItems, item);
+    if (item) toggleToFav(listItems, item);
   };
 
   return (
