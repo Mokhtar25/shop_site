@@ -6,29 +6,27 @@ import Mas from "./../assets/mas.png";
 //
 // fix issue with postionen the picture on the web. it is possibly difference between reading
 
-// <img
-// className="absolute top-[-80px] size-[700px] rotate-12 select-none"
-// src={Mas}
-// ></img>
-//
 const HomePage = () => {
   return (
-    <div className="relative box-border h-[600px] border-2 border-red-500 text-8xl">
-      <div className="ml-20 box-border flex justify-center gap-6 border-2 border-green-700 p-10">
-        <span>Welcome to</span>
-        <span className="pinkColor w-fit animate-pulse border-2 border-blue-700">
-          {" "}
-          Sea shop
-        </span>
+    <div className="relative box-border flex h-[600px] flex-col items-end pr-20 pt-10 text-8xl">
+      <img
+        className="absolute inset-0 left-5 top-[-100px] m-0 box-border size-[700px] select-none p-0"
+        src={Mas}
+      ></img>
+      <div className="main-text ml-20 mr-12 box-border flex items-center justify-center gap-6">
+        <span>Welcome to </span>
+        <span className="pinkColor"> Sea shop</span>
       </div>
-      <div className="box-border border-2 border-white text-4xl">
+      <div className="mr-44 mt-28 box-border flex w-fit flex-col items-center gap-10 text-4xl">
         <div>
           Shop{" "}
-          <span className="box-border border-2 border-white">world class </span>
+          <span className="pinkColor box-border animate-pulse">
+            world class{" "}
+          </span>
           beauty Products
         </div>
         <Link to={"/shop"}>
-          <button className="ml-2/4 bg-pink rounded-xl border-2 border-white p-6 transition-all hover:brightness-110 active:scale-50">
+          <button className="ml-2/4 bg-pink rounded-xl border-2 border-white p-6 font-light brightness-90 transition-all hover:brightness-110 active:scale-50">
             Shop now
           </button>
         </Link>
