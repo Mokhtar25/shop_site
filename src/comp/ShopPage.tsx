@@ -31,6 +31,7 @@ const setCat = () => {
 export default function ShopPage() {
   const [selection, setSelection] = useState<Catgories[]>(setCat());
   const [currentCat, setCurrentCat] = useState("all");
+  const [loading, setLoading] = useState(false);
 
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
@@ -39,10 +40,14 @@ export default function ShopPage() {
   // glitch when switching between catagories directlly
 
   const fetchItems = (e: string, abort: AbortController) => {
+    setLoading(true);
     if (e === "all") {
       setItems(allItems);
+      setLoading(false);
     } else {
-      getItemsByCat(e, abort).then((e) => setItems(e));
+      getItemsByCat(e, abort)
+        .then((e) => setItems(e))
+        .then(() => setLoading(false));
     }
   };
 
@@ -77,7 +82,7 @@ export default function ShopPage() {
   /// add loading state, when fetching new catagory and let skleton shape take over to show responsivines
   //  also dynamiclly genrate loading cards based on the length of the current card.
   return (
-    <div className="flex h-fit border-2 border-pink-50">
+    <div className="relative flex h-fit border-2 border-pink-50">
       <aside className="flex w-1/3 flex-col gap-8 bg-white text-black">
         <h2 className="pinkColor mt-2 p-2 px-4 text-5xl font-medium">
           Sea Shop
@@ -98,7 +103,12 @@ export default function ShopPage() {
           ))}
         </ul>
       </aside>
-      <main className="flex min-h-dvh w-[100%] flex-wrap gap-24 p-12 pl-20">
+      <main
+        className={
+          "relative flex min-h-dvh w-[100%] flex-wrap gap-24 p-12 pl-20 transition-all after:absolute after:inset-0 after:h-full after:w-full after:animate-pulse after:bg-white after:bg-opacity-30" +
+          (loading ? " " : " after:hidden")
+        }
+      >
         {items && items.length > 0 ? (
           items.map((e: Product) => <Card key={e.id} product={e} />)
         ) : (
