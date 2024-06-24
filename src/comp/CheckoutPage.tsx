@@ -19,14 +19,19 @@ export const CheckoutPage = () => {
       <div className="flex-grow flex-col bg-slate-100">
         <h1 className="pinkColor p-10 text-3xl font-bold">Shopping Cart</h1>
         <div className="divide-y-2 divide-slate-300 pl-1">
-          {items.card.cardItems.length !== 0 &&
+          {items.card.cardItems.length !== 0 ? (
             items.card.cardItems.map((ele) => (
               <ItemCard
                 key={ele.product.id - 1000}
                 product={ele}
                 contextItems={items}
               />
-            ))}
+            ))
+          ) : (
+            <div className="ml-8 mt-20 text-4xl text-slate-500">
+              Your cart is empty
+            </div>
+          )}
         </div>
       </div>
 

@@ -1,25 +1,31 @@
 import { Link } from "react-router-dom";
+import Mas from "./../assets/mas.png";
 
-const pictureUrl =
-  "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png";
-
+// const pictureUrl =
+//   "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png";
+//
 // fix issue with postionen the picture on the web. it is possibly difference between reading
-export default function HomePage() {
+
+// <img
+// className="absolute top-[-80px] size-[700px] rotate-12 select-none"
+// src={Mas}
+// ></img>
+//
+const HomePage = () => {
   return (
-    <div className="flex h-[600px] flex-col text-8xl">
-      <div className="absolute bottom-3/4 right-40">
-        Welcome to
-        <span className="pinkColor animate-pulse font-medium">Sea shop</span>
+    <div className="relative box-border h-[600px] border-2 border-red-500 text-8xl">
+      <div className="ml-20 box-border flex justify-center gap-6 border-2 border-green-700 p-10">
+        <span>Welcome to</span>
+        <span className="pinkColor w-fit animate-pulse border-2 border-blue-700">
+          {" "}
+          Sea shop
+        </span>
       </div>
-
-      <img
-        className="absolute top-[-80px] size-[700px] rotate-12 select-none"
-        src={pictureUrl}
-      ></img>
-
-      <div className="absolute right-40 top-[40%] flex flex-col items-center justify-center gap-10 text-4xl">
+      <div className="box-border border-2 border-white text-4xl">
         <div>
-          Shop <span className="pinkColor">world class </span>beauty Products
+          Shop{" "}
+          <span className="box-border border-2 border-white">world class </span>
+          beauty Products
         </div>
         <Link to={"/shop"}>
           <button className="ml-2/4 bg-pink rounded-xl border-2 border-white p-6 transition-all hover:brightness-110 active:scale-50">
@@ -29,4 +35,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

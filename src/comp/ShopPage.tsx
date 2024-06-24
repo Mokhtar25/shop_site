@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
-import { v4 as uuidv4 } from "uuid";
 import { products } from "../context";
 import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
@@ -35,9 +35,7 @@ export default function ShopPage() {
 
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
-  const checkBoxStyle = " ";
-  // add a blur or a whitsh overlay over products when reslecting
-  // glitch when switching between catagories directlly
+  const checkBoxStyle = " accent-black";
 
   const fetchItems = (e: string, abort: AbortController) => {
     setLoading(true);
@@ -79,8 +77,6 @@ export default function ShopPage() {
     setCurrentCat(selection[index].name);
   };
 
-  /// add loading state, when fetching new catagory and let skleton shape take over to show responsivines
-  //  also dynamiclly genrate loading cards based on the length of the current card.
   return (
     <div className="relative flex h-fit border-2 border-pink-50">
       <aside className="flex w-1/3 flex-col gap-8 bg-white text-black">
