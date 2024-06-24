@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
 import { itemsContext, products } from "../context";
 import { useNavigate, useParams } from "react-router-dom";
-import { addItemToCart } from "../utils/utilsItems";
+import { addItemToCart, toggleToFav } from "../utils/utilsItems";
+import { HeartIcon } from "./Card";
 
 const DisplayProduct = () => {
   const nav = useNavigate();
@@ -21,9 +22,15 @@ const DisplayProduct = () => {
   const item = items.find((e) => e.id === +id);
 
   if (!item) return null;
+  const inCart = listItems.card.cardItems.some((e) => e.product.id === item.id);
+
+  const isLiked = listItems.liked.likedItems.some((e) => e.id === item.id);
 
   const addToCart = () => {
     addItemToCart(listItems, item);
+  };
+  const handelFav = () => {
+    toggleToFav(listItems, item);
   };
 
   return (
@@ -39,6 +46,14 @@ const DisplayProduct = () => {
         <span className="flex items-center gap-1 py-4 text-sm text-gray-100">
           <InStock className="size-6 fill-slate-200"></InStock>
           {item?.availabilityStatus}
+          <HeartIcon
+            className={
+              "ml-auto size-6 cursor-pointer transition-all hover:scale-105 active:scale-95" +
+              (isLiked ? " fill-rose-500" : "fill-white")
+            }
+            active={isLiked}
+            onClick={handelFav}
+          />
         </span>
         <span className="text-xl font-medium tracking-wide text-zinc-200">
           {item?.price}€
@@ -49,9 +64,12 @@ const DisplayProduct = () => {
         </span>
         <button
           onClick={addToCart}
-          className="mt-16 h-10 rounded-xl border-2 border-white transition-all duration-200 hover:bg-neutral-500 hover:bg-opacity-25 active:bg-opacity-100"
+          className={
+            "mt-16 h-10 rounded-xl border-2 border-white transition-all duration-200 hover:bg-neutral-500 hover:bg-opacity-25 active:bg-opacity-100" +
+            (inCart ? " bg-emerald-600 bg-opacity-20" : "")
+          }
         >
-          Add to Cart
+          {inCart ? "In Cart" : "Add to Cart"}
         </button>
       </div>
     </div>
