@@ -14,6 +14,8 @@ interface FavDropProps {
 export default function FavDropDown({ favList, hide, open }: FavDropProps) {
   const nav = useNavigate();
   const div = useRef<HTMLDivElement>(null);
+  // you can use destructing to get the values that are wanted only
+  // const {liked} = ...
   const items = useContext(itemsContext);
 
   div.current?.addEventListener("mouseleave", () => {

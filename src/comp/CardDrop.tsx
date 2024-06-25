@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { CardItem } from "../context";
-import { SetStateAction, useRef } from "react";
+import { SetStateAction, useRef, useMemo } from "react";
 
 interface CardDropProps {
   ProductList: CardItem[];
@@ -10,10 +10,14 @@ interface CardDropProps {
 
 export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
   const nav = useNavigate();
-  const finialPrice = ProductList.reduce(
-    (a, b) => a + b.product.price * b.amount,
-    0,
-  ).toFixed(2);
+
+  const finialPrice = useMemo(
+    () =>
+      ProductList.reduce((a, b) => a + b.product.price * b.amount, 0).toFixed(
+        2,
+      ),
+    [ProductList],
+  );
 
   const div = useRef<HTMLDivElement>(null);
   div.current?.addEventListener("mouseleave", () => {
