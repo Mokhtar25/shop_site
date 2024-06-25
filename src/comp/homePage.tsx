@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Mas from "./../assets/mas.png";
+import Mas from "./../assets/mas.avif";
 
 // const pictureUrl =
 //   "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png";
@@ -8,8 +8,11 @@ const HomePage = () => {
   return (
     <div className="relative box-border flex h-[600px] flex-col items-end pr-20 pt-10 text-8xl">
       <img
-        className="absolute inset-0 left-5 top-[-100px] m-0 box-border size-[700px] select-none p-0"
+        className="absolute inset-0 left-5 top-[-100px] m-0 box-border select-none p-0"
+        width={700}
+        height={700}
         src={Mas}
+        alt="Mascara Image"
       ></img>
       <div className="main-text ml-20 mr-12 box-border flex items-center justify-center gap-6">
         <span>Welcome to </span>
