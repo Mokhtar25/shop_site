@@ -8,6 +8,8 @@ const HomePage = () => {
   return (
     <div className="relative box-border flex h-[600px] flex-col items-end pr-20 pt-10 text-8xl">
       <img
+        role="presentation"
+        fetchPriority="high"
         className="absolute inset-0 left-5 top-[-100px] m-0 box-border select-none p-0"
         width={700}
         height={700}
