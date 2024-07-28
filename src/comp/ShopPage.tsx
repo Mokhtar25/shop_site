@@ -6,6 +6,7 @@ import { products } from "../context";
 import { Product } from "../types";
 import { getItemsByCat } from "../utils/utils";
 import { LoadingCard } from "./Loadingcard";
+import { useSearchParams } from "react-router-dom";
 
 const catgories = ["beauty", "mens-watches", "skin-care", "sunglasses"];
 
@@ -14,23 +15,38 @@ interface Catgories {
   name: string;
   selected: boolean;
 }
-const setCat = () => {
+const setCat = (currentCat: string) => {
   const items = [];
 
-  for (const item of catgories) {
-    const temp = {
-      id: uuidv4(),
-      name: item,
-      selected: false,
-    };
-    items.push(temp);
+  if (currentCat === "all" || !catgories.includes(currentCat)) {
+    for (const item of catgories) {
+      const temp = {
+        id: uuidv4(),
+        name: item,
+        selected: false,
+      };
+      items.push(temp);
+    }
+  } else {
+    for (const item of catgories) {
+      const temp = {
+        id: uuidv4(),
+        name: item,
+        selected: item === currentCat ? true : false,
+      };
+      items.push(temp);
+    }
   }
   return items;
 };
 
 export default function ShopPage() {
-  const [selection, setSelection] = useState<Catgories[]>(setCat());
-  const [currentCat, setCurrentCat] = useState("all");
+  //const [currentCat, setCurrentCat] = useState("all");
+  const [cat, setCurrentCat] = useSearchParams({ q: "all" });
+  // check if the param is correct
+  const temp = cat.get("q") || "all";
+  const currentCat = catgories.includes(temp) ? temp : "all";
+  const [selection, setSelection] = useState<Catgories[]>(setCat(currentCat));
   const [loading, setLoading] = useState(false);
 
   const allItems = useContext(products);
@@ -69,12 +85,25 @@ export default function ShopPage() {
 
     const all = newArray.findIndex((e) => e.selected === true);
     if (all === -1) {
-      setCurrentCat("all");
+      setCurrentCat(
+        (prev) => {
+          prev.set("q", "all");
+          return prev;
+        },
+        { replace: true },
+      );
       return;
     }
 
     const index = selection.findIndex((e) => e.id === elementId);
-    setCurrentCat(selection[index].name);
+    //setCurrentCat(selection[index].name);
+    setCurrentCat(
+      (prev) => {
+        prev.set("q", selection[index].name);
+        return prev;
+      },
+      { replace: true },
+    );
   };
 
   return (
