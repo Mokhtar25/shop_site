@@ -31,6 +31,7 @@ export default function CardDrop({ ProductList, hide, open }: CardDropProps) {
 
   return (
     <div
+      title="card items"
       ref={div}
       className={
         "no-scrollbar absolute right-[51%] top-16 z-[99] box-border w-96 divide-y-2 divide-black overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300" +

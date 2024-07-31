@@ -32,6 +32,7 @@ export default function FavDropDown({ favList, hide, open }: FavDropProps) {
 
   return (
     <div
+      title="Liked items"
       ref={div}
       className={
         "no-scrollbar absolute right-[25%] top-16 z-[99] mx-auto box-border w-96 select-none divide-y-2 divide-rose-200 overflow-y-scroll rounded-lg bg-neutral-200 outline-red-300 transition-all duration-300" +

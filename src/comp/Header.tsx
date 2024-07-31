@@ -87,6 +87,7 @@ const CartIcon = ({
 }) => {
   return (
     <svg
+      aria-label="shopping card drop down"
       onClick={onClick}
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -107,6 +108,7 @@ const HeartIcon = ({
 }) => {
   return (
     <svg
+      aria-label="toggle like"
       onClick={onClick}
       className={className}
       xmlns="http://www.w3.org/2000/svg"

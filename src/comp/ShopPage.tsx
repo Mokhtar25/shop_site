@@ -180,11 +180,16 @@ const CheckBox = ({
       className="group flex cursor-pointer flex-row-reverse items-center justify-end gap-2 rounded text-slate-600 transition-all hover:bg-slate-100"
       onClick={handelClick}
     >
-      <label htmlFor="makeup" className="cursor-pointer select-none">
+      <label
+        title={title}
+        htmlFor="makeup"
+        className="cursor-pointer select-none"
+      >
         {title}
       </label>
       <input
         ref={inputElm}
+        title={title}
         type="checkbox"
         className={className + " size-4 cursor-pointer accent-black"}
         checked={checked}

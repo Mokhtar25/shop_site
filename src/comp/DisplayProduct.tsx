@@ -66,6 +66,7 @@ const DisplayProduct = () => {
           {item?.rating}/5 ({item?.reviews.length})
         </span>
         <button
+          title="add to cart"
           onClick={addToCart}
           className={
             "mt-16 h-10 rounded-xl border-2 border-white transition-all duration-200 hover:bg-neutral-500 hover:bg-opacity-25 active:bg-opacity-100" +

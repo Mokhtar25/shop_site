@@ -81,6 +81,7 @@ export const HeartIcon = ({
     onClick={(e) => onClick(e)}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
+    aria-label="Toggle Like"
     className={(active ? "fill-rose-600 " : "fill-white ") + className}
     {...props}
   >
