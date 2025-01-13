@@ -41,35 +41,45 @@ const setCat = (currentCat: string) => {
 };
 
 export default function ShopPage() {
+  console.log("redner page");
   //const [currentCat, setCurrentCat] = useState("all");
   const [cat, setCurrentCat] = useSearchParams({ q: "all" });
   // check if the param is correct
   const temp = cat.get("q") || "all";
   const currentCat = catgories.includes(temp) ? temp : "all";
-  const [selection, setSelection] = useState<Catgories[]>(setCat(currentCat));
+  // not calling the function so its renders only on inital render instead of rerunning on every render
+  const [selection, setSelection] = useState<Catgories[]>(() =>
+    setCat(currentCat),
+  );
   const [loading, setLoading] = useState(false);
 
   const allItems = useContext(products);
   const [items, setItems] = useState<Product[]>([]);
   const checkBoxStyle = " accent-black";
 
-  const fetchItems = (e: string, abort: AbortController) => {
-    setLoading(true);
-    if (e === "all") {
-      setItems(allItems);
-      setLoading(false);
-    } else {
-      getItemsByCat(e, abort)
-        .then((e) => setItems(e))
-        .then(() => setLoading(false));
-    }
-  };
+  const fetchItems = useCallback(
+    (e: string, abort: AbortController) => {
+      setLoading(true);
+      if (e === "all") {
+        setItems(allItems);
+        setLoading(false);
+      } else {
+        getItemsByCat(e, abort)
+          .then((e) => setItems(e))
+          .then(() => setLoading(false));
+      }
+    },
+    [allItems],
+  );
 
   useEffect(() => {
     const abort = new AbortController();
+    console.log("run effect");
     fetchItems(currentCat, abort);
 
     return () => abort.abort();
+    // dependncey array must be premtive types
+    // you can use json.strinfay
   }, [currentCat, allItems]);
 
   const handelChange = (

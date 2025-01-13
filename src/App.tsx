@@ -10,6 +10,8 @@ import ErrorPage from "./comp/ErrorPage";
 import { getBasicItems } from "./utils/utils";
 
 function App({ Error = false }) {
+  // the state of the products that are liked or favorited could be stored
+  // as just ids of the items and then looked up without a useState // deprived state
   const [likedProudcts, setLikedProducts] = useState<Product[]>([]);
   const [items, setItems] = useState<Product[]>([]);
   const [cardItems, setCardItems] = useState<CardItem[]>([]);
